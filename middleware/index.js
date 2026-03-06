@@ -1,42 +1,37 @@
 var Record = require("../models/record");
 var Comment = require("../models/comment");
 
-// all the middleare goes here
 var middlewareObj = {};
 
-middlewareObj.checkRecordOwnership = function(req, res, next) {
- if(req.isAuthenticated()){
-        Record.findById(req.params.id, function(err, foundRecord){
-           if(err){
-               res.redirect("back");
-           }  else {
-               // does user own the campground?
+middlewareObj.checkRecordOwnership = async function(req, res, next) {
+    if(req.isAuthenticated()){
+        try {
+            var foundRecord = await Record.findById(req.params.id);
             if(foundRecord.author.id.equals(req.user._id)) {
                 next();
             } else {
                 res.redirect("back");
             }
-           }
-        });
+        } catch(err) {
+            res.redirect("back");
+        }
     } else {
         res.redirect("back");
     }
 };
 
-middlewareObj.checkCommentOwnership = function(req, res, next) {
- if(req.isAuthenticated()){
-        Comment.findById(req.params.comment_id, function(err, foundComment){
-           if(err){
-               res.redirect("back");
-           }  else {
-               // does user own the comment?
+middlewareObj.checkCommentOwnership = async function(req, res, next) {
+    if(req.isAuthenticated()){
+        try {
+            var foundComment = await Comment.findById(req.params.comment_id);
             if(foundComment.author.id.equals(req.user._id)) {
                 next();
             } else {
                 res.redirect("back");
             }
-           }
-        });
+        } catch(err) {
+            res.redirect("back");
+        }
     } else {
         res.redirect("back");
     }

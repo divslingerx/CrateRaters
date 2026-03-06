@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
@@ -18,7 +20,7 @@ var commentRoutes    = require("./routes/comments"),
     recordRoutes = require("./routes/records"),
     indexRoutes      = require("./routes/index");
     
-mongoose.connect("mongodb://localhost/crate_raters");
+mongoose.connect(process.env.MONGODB_URI);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -50,6 +52,7 @@ app.use("/records", recordRoutes);
 app.use("/records/:id/comments", commentRoutes);
 
 
-app.listen(3000, function(){
-   console.log("The Crate Raters Server Has Started!");
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
+   console.log("The Crate Raters Server Has Started on port " + port + "!");
 });
