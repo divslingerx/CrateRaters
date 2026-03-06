@@ -9,15 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.17.1",
+    "body-parser": "^2.2.2",
     "connect-flash": "^0.1.1",
-    "ejs": "^2.5.6",
-    "express": "^4.15.2",
-    "express-session": "^1.15.3",
-    "method-override": "^2.3.8",
-    "mongoose": "^4.9.9",
-    "passport": "^0.3.2",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.2.4",
+    "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^4.0.0"
-  }
+    "passport-local-mongoose": "^9.0.1"
+  },
+  "packageManager": "pnpm@10.20.0+sha512.cf9998222162dd85864d0a8102e7892e7ba4ceadebbf5a31f9c2fce48dfce317a9c53b9f6464d1ef9042cba2e02ae02a9f7c143a2b438cd93c91840f0192b9dd"
 }
